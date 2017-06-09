@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: k8s-testserver
+    namespace: default
+  spec:
+    replicas: 3
+    template:
+      metadata:
+        labels:
+          run: k8s-testserver
+      spec:
+        containers:
+        - image: epflsti/epflsti/k8s-testserver
+          imagePullPolicy: Always
+          name: k8s-testserver
+          ports:
+          - containerPort: 3000
+            protocol: TCP
