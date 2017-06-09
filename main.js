@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
   res.header('Expires', '-1')
   res.header('Pragma', 'no-cache')
-  let hostname = os.hostname()
+  var hostname = os.hostname()
   res.render('pages/index', {
     hostname: hostname
   });
