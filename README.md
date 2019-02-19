@@ -8,7 +8,7 @@ The page does 3 things (but only one really needed):
   1. Displays a computer quote.
 
 ### Screenshot
-![Screenshot](Screenshot_Nemesis_k8s_test_app_-_2017-06-09_18.22.42.png "Screenshot")
+![Screenshot](k8s-testserver.png "Screenshot")
 
 ## Commands
 
