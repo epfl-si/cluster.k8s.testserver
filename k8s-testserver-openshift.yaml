@@ -35,6 +35,9 @@ spec:
             requests:
               cpu: 50m
               memory: 50Mi
+          envFrom:
+          - secretRef:
+              name: k8ssecret
       restartPolicy: Always
 
 ---
@@ -79,4 +82,16 @@ spec:
     name: k8s-testserver-service
     weight: 100
   wildcardPolicy: None
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: k8ssecret
+  namespace: grantsdb-test
+stringData:
+  K8SSECRET: monsupersecret
+  password: miaowmiaowmiaow
+  username: lechat
+type: Opaque
 
