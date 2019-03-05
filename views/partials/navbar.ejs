@@ -8,6 +8,8 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a>Served by: <%= hostname %></a></li>
+          <li><a><% var secret = process.env.K8SSECRET || 'not set' %>
+                  <small>Env secret: <%= secret %></small></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="https://github.com/epfl-idevelop/cluster.k8s.testserver/issues">help/info</a></li>
