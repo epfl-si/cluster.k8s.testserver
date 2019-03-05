@@ -38,6 +38,18 @@ spec:
           envFrom:
           - secretRef:
               name: k8ssecret
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
       restartPolicy: Always
 
 ---
