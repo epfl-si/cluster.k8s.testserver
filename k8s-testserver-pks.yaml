@@ -1,0 +1,63 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testserver-ui
+  labels:
+    app: testserver-ui
+    tier: frontend
+  namespace: testserver
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: testserver-ui
+    tier: frontend
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: k8s-testserver
+  namespace: testserver
+  labels:
+    app: testserver-ui
+    tier: frontend
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: testserver-ui
+        tier: frontend
+        run: k8s-testserver
+    spec:
+      containers:
+        - name: k8s-testserver
+          image: vsissp-harbor-t-2.xaas.epfl.ch/poc/k8s-testserver:0.1
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+          env:
+            - name:  K8SSECRET
+              valueFrom: 
+                secretKeyRef:
+                  name: k8ssecret
+                  key: K8SSECRET
+      imagePullSecrets:
+        - name: regcred
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: k8ssecret
+  namespace: testserver
+stringData:
+  K8SSECRET: monsupersecret
+  password: miaowmiaowmiaow
+  username: lechat
+type: Opaque
