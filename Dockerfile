@@ -6,6 +6,10 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
 RUN npm install && npm cache clean --force
-COPY . /usr/src/app
+COPY main.js /usr/src/app/
+RUN mkdir /usr/src/app/views
+COPY views /usr/src/app/views
 
 EXPOSE 3000
+
+CMD [ "npm", "start" ]
