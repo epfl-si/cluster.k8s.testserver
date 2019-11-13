@@ -3,7 +3,7 @@
     <div class="row mt centered">
       <div class="col-lg-6 col-lg-offset-3">
         <!-- random computer quote -->
-        <% var num = Math.floor(Math.random() * 16) + 1  %>
+        <% var num = ('' + Math.floor(Math.random() * 18)).padStart(2, '0')  %>
         <% var quotePath = '../partials/quotes/quote' + num %>
         <%- include(quotePath) %>
       </div>

@@ -1,7 +1,7 @@
 {
   "name": "cluster.k8s.testserver",
-  "version": "1.0.1",
-  "description": "A containrized node webserver to use as a test app on k8s",
+  "version": "1.0.2",
+  "description": "A containerized node webserver to use as a test app on K8S",
   "main": "main.js",
   "scripts": {
     "start": "node main.js"
@@ -9,9 +9,9 @@
   "author": "ponsfrilus",
   "license": "MIT",
   "dependencies": {
-    "ejs": "^2.5.6",
-    "express": "^4.15.3",
-    "quick-local-ip": "^1.0.7"
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
   },
   "devDependencies": {},
   "repository": {
@@ -25,7 +25,8 @@
     "node",
     "test",
     "server",
-    "openshift"
+    "openshift",
+    "pks"
   ],
   "bugs": {
     "url": "https://github.com/epfl-idevelop/cluster.k8s.testserver/issues"
