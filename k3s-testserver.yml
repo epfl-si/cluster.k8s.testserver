@@ -1,0 +1,100 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: catnetwork
+  namespace: default
+  labels:
+    app: catnetwork
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catnetwork
+  template:
+    metadata:
+      labels:
+        app: catnetwork
+    spec:
+      containers:
+        - image: docker.io/epflsi/k8s-testserver:latest
+          name: k8test-server
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+
+---
+#exposition des ports sur l'adresse externe
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: catnetwork
+  namespace: default
+spec:
+  ports:
+  # Be sure not to name the port "https"!
+  # As an undocumented (but fairly reasonable) feature of
+  # Træfik as an ingress controller, doing so tells Træfik
+  # to speak HTTP/S to your pod.
+  - name: http
+    port: 3333
+    protocol: TCP
+    targetPort: 3000
+
+  selector:
+    app: catnetwork
+
+---
+# This would work, but doesn't provide URL rewriting
+# as of Træfik version 2:
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#  name: minimal-ingress
+# spec:
+#   rules:
+#   - http:
+#      paths:
+#       - path: "/miaou"
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: catnetwork
+#             port:
+#               number: 3333
+
+# Træfik URL rewriting can be put into motion using
+# the specific CRDs documented at
+# https://doc.traefik.io/traefik/v2.0/routing/providers/kubernetes-crd/ :
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: stripmiaou
+  namespace: default
+spec:
+  stripPrefix:
+    prefixes:
+      - /miaou
+
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: miaou-ingress
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: PathPrefix(`/miaou`)
+    kind: Rule
+    services:
+    - name: catnetwork
+      port: 3333
+    middlewares:
+    - name: stripmiaou
+      namespace: default
+
