@@ -1,4 +1,4 @@
-FROM node:lts-slim
+FROM node:lts-alpine
 LABEL maintainer="nicolas.borboen@epfl.ch"
 
 RUN mkdir -p /usr/src/app
