@@ -16,7 +16,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/epfl-idevelop/cluster.k8s.testserver.git"
+    "url": "git+https://github.com/epfl-si/cluster.k8s.testserver.git"
   },
   "keywords": [
     "kubernetes",
@@ -29,7 +29,7 @@
     "pks"
   ],
   "bugs": {
-    "url": "https://github.com/epfl-idevelop/cluster.k8s.testserver/issues"
+    "url": "https://github.com/epfl-si/cluster.k8s.testserver/issues"
   },
-  "homepage": "https://github.com/epfl-idevelop/cluster.k8s.testserver#readme"
+  "homepage": "https://github.com/epfl-si/cluster.k8s.testserver#readme"
 }

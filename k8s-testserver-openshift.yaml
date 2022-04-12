@@ -7,7 +7,7 @@ metadata:
   labels:
     app: k8s-testserver-demo
   annotations:
-    authors: idev-fsd
+    authors: isas-fsd
 spec:
   replicas: 2
   selector:
@@ -22,7 +22,7 @@ spec:
         version: 0.0.1
     spec:
       containers:
-        - image: 'epflidevelop/k8s-testserver:latest'
+        - image: 'epflsi/k8s-testserver:latest'
           imagePullPolicy: Always
           name: k8s-testserver-demo
           ports:
@@ -61,7 +61,7 @@ metadata:
   labels:
     app: k8s-testserver-demo
   annotations:
-    authors: idev-fsd
+    authors: isas-fsd
 spec:
   ports:
   - name: "80"
@@ -82,7 +82,7 @@ metadata:
   labels:
     app: k8s-testserver-demo
   annotations:
-    authors: idev-fsd
+    authors: isas-fsd
 spec:
   host: k8s-demo.128.178.222.83.nip.io
   port:
