@@ -1,0 +1,65 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testserver-ui
+  labels:
+    app: testserver-ui
+    tier: frontend
+  namespace: app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: k8stest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-testserver
+  namespace: app
+  labels:
+    app: testserver-ui
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8stest
+  template:
+    metadata:
+      labels:
+        app: k8stest
+    spec:
+      containers:
+        - name: k8s-testserver
+          image: vsissp-harbor-p.epfl.ch/itsidevfsdt/meow:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+          env:
+            - name:  K8SSECRET
+              valueFrom: 
+                secretKeyRef:
+                  name: k8ssecret
+                  key: K8SSECRET
+          securityContext:
+            runAsUser: 1000
+      imagePullSecrets:
+      - name: harbor-robot-pull
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: k8ssecret
+  namespace: app
+stringData:
+  K8SSECRET: monsupersecret
+  password: miaowmiaowmiaow
+  username: lechat
+type: Opaque
