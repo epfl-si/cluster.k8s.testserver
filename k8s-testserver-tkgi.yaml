@@ -63,3 +63,21 @@ stringData:
   password: miaowmiaowmiaow
   username: lechat
 type: Opaque
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: miaow
+  namespace: app
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: testserver-ui
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
