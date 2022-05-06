@@ -42,6 +42,8 @@ spec:
           - containerPort: 3000
             protocol: TCP
           env:
+            - name: DEPLOYEDBY
+              value: ISAS-FSD
             - name:  K8SSECRET
               valueFrom: 
                 secretKeyRef:
