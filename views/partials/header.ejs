@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-7">
           <h1>Yup! This gif has been<br/>
-          brought to you by ISAS-FSD!</h1>
+          brought to you by <%= process.env.DEPLOYEDBY || 'the Internet' %>!</h1>
         </div><!-- /col-lg-6 -->
         <div class="col-lg-5">
           <img class="img-responsive" style="margin: 0 auto;" src="http://thecatapi.com/api/images/get?format=src&type=gif" alt="your lolcat">
