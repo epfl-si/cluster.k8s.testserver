@@ -5,7 +5,7 @@ A containerized node web server to use as a test application for k8s/openshift.
 The page does 4 things (but only one really needed):
   1. Shows the hostname (in the top of the page);
   1. Displays the ENV var `K8SSECRET`;
-  1. Displays a animated lolcat (from [the cat api](http://thecatapi.com/));
+  1. Displays a animated lolcat (from [the cat api](https://thecatapi.com/));
   1. Displays a computer quote.
 
 ### Screenshot
