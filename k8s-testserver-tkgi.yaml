@@ -72,14 +72,17 @@ kind: Ingress
 metadata:
   name: miaow
   namespace: app
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
-  - http:
-      paths:
-      - backend:
-          service:
-            name: testserver-ui
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
+    - host: i.svc0176idevfsdkt0001.xaas.epfl.ch
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: testserver-ui
+                port:
+                  number: 80
