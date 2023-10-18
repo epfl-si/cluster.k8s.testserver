@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: k8s-testserver-deployment
-  namespace: grantsdb-test
+  namespace: miaow-prod
   labels:
     app: k8s-testserver-demo
   annotations:
@@ -57,7 +57,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: k8s-testserver-service
-  namespace: grantsdb-test
+  namespace: miaow-prod
   labels:
     app: k8s-testserver-demo
   annotations:
@@ -78,7 +78,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: k8s-testserver-service
-  namespace: grantsdb-test
+  namespace: miaow-prod
   labels:
     app: k8s-testserver-demo
   annotations:
@@ -100,7 +100,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: k8ssecret
-  namespace: grantsdb-test
+  namespace: miaow-prod
 stringData:
   K8SSECRET: monsupersecret
   password: miaowmiaowmiaow
