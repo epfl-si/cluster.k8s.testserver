@@ -95,7 +95,7 @@ spec:
     # 443), Træfik can be on either node at any given time. (Find out
     # with `kubectl get pods -n traefik-ingress-system -o wide`).
     # Therefore we need two rules:
-    - host: itsgitlab0002.xaas.epfl.ch
+    - host: itswbhst0018.xaas.epfl.ch
       http:
         paths:
           - path: /
@@ -105,7 +105,7 @@ spec:
                 name: k8s-testserver-service
                 port:
                   number: 80
-    - host: itsgitlab0003.xaas.epfl.ch
+    - host: itswbhst0020.xaas.epfl.ch
       http:
         paths:
           - path: /
