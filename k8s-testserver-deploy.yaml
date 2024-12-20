@@ -1,17 +1,20 @@
 apiVersion: v1
 kind: List
 items:
-- apiVersion: extensions/v1beta1
+- apiVersion: apps/v1
   kind: Deployment
   metadata:
     name: k8s-testserver
     namespace: default
   spec:
     replicas: 3
+    selector:
+      matchLabels:
+        app: k8s-testserver
     template:
       metadata:
         labels:
-          run: k8s-testserver
+          app: k8s-testserver
       spec:
         containers:
         - image: epflsti/k8s-testserver
