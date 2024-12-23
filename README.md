@@ -20,5 +20,5 @@ The page does 4 things (but only one really needed):
 * Create the pods and service with kubectl: `kubectl create -f k8s-testserver-deploy.yaml` or `kubectl create -f https://raw.githubusercontent.com/epfl-idevelop/cluster.k8s.testserver/master/k8s-testserver-deploy.yaml`
 * Check the deployment with: `kubectl get all -o wide`
 * To expose the pod with a k8s service, use: `kubectl expose rs k8s-testserver-1234567890`
-* Get the service IP: `kubectl get all -o wide` and search for `svc/k8s-testserver-1234567890`
+* Get the service IP: `kubectl get all -o wide` and search for `service/k8s-testserver-1234567890`
 * Check it out: `curl THE.SER.VIC.EIP:3000` (but it's indeed better looking in a browser)
